@@ -6,9 +6,13 @@ from getpass import getpass
 from scp import SCPClient
 import logging
 import re
-from pyngrok import ngrok
-import webbrowser
 import sys
+try:
+    from pyngrok import ngrok
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pyngrok"])
+    from pyngrok import ngrok
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
