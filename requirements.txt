@@ -2,4 +2,3 @@ pyOpenSSL
 paramiko
 scp
 pyngrok
-webbrowser
