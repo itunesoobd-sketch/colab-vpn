@@ -72,7 +72,12 @@ verb 3
 def open_ovpn_file(ovpn_file):
     """Opens the .ovpn file with the default application."""
     try:
-        os.startfile(ovpn_file)
+        if sys.platform == "win32":
+            os.startfile(ovpn_file)
+        elif sys.platform == "darwin":
+            subprocess.run(["open", ovpn_file])
+        else:
+            subprocess.run(["xdg-open", ovpn_file])
         logging.info(f"Successfully opened {ovpn_file} with the default application.")
     except Exception as e:
         logging.error(f"Failed to open {ovpn_file}: {e}")
