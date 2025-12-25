@@ -8,9 +8,18 @@ import logging
 import re
 from pyngrok import ngrok
 import webbrowser
+import sys
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def install_packages():
+    """Installs the required packages if they are not already installed."""
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Failed to install packages: {e}")
+        sys.exit(1)
 
 def execute_ssh_command(client, command):
     """Executes a command on the remote server and logs the output."""
@@ -69,6 +78,9 @@ def open_ovpn_file(ovpn_file):
         logging.error(f"Failed to open {ovpn_file}: {e}")
 
 def main():
+    # Install required packages
+    install_packages()
+
     # Get ngrok tunnel
     ngrok_url = get_ngrok_tunnel()
     if not ngrok_url:

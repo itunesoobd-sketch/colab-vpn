@@ -6,13 +6,14 @@ This project allows you to use a Google Colab notebook as a system-wide VPN serv
 
 The `vpn_setup.py` script performs the following steps:
 
-1.  **Starts an ngrok tunnel.** It uses the `pyngrok` library to create an SSH tunnel to the Colab notebook.
-2.  **Connects to a Google Colab notebook via SSH.** It uses the `paramiko` library to establish an SSH connection to the Colab instance.
-3.  **Installs OpenVPN and Easy-RSA.** The script installs the necessary software on the Colab instance to create a VPN server.
-4.  **Configures the OpenVPN server.** It generates the server configuration files and certificates using Easy-RSA.
-5.  **Generates a client configuration file.** The script creates an OpenVPN client configuration file (`.ovpn`) that you can use to connect to the VPN server.
-6.  **Transfers the client configuration file to your local machine.** It uses the `scp` protocol to securely transfer the `.ovpn` file from the Colab instance to your local machine.
-7.  **Opens the OpenVPN client.** The script automatically opens the generated `.ovpn` file with the default application, which should be your OpenVPN client.
+1.  **Installs required packages.** It automatically installs the required Python packages from the `requirements.txt` file.
+2.  **Starts an ngrok tunnel.** It uses the `pyngrok` library to create an SSH tunnel to the Colab notebook.
+3.  **Connects to a Google Colab notebook via SSH.** It uses the `paramiko` library to establish an SSH connection to the Colab instance.
+4.  **Installs OpenVPN and Easy-RSA.** The script installs the necessary software on the Colab instance to create a VPN server.
+5.  **Configures the OpenVPN server.** It generates the server configuration files and certificates using Easy-RSA.
+6.  **Generates a client configuration file.** The script creates an OpenVPN client configuration file (`.ovpn`) that you can use to connect to the VPN server.
+7.  **Transfers the client configuration file to your local machine.** It uses the `scp` protocol to securely transfer the `.ovpn` file from the Colab instance to your local machine.
+8.  **Opens the OpenVPN client.** The script automatically opens the generated `.ovpn` file with the default application, which should be your OpenVPN client.
 
 ## Prerequisites
 
@@ -25,19 +26,14 @@ The `vpn_setup.py` script performs the following steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/colab-vpn.git
+   git clone https://github.com/itunesoobd-sketch/colab-vpn.git
    cd colab-vpn
    ```
 
-2. **Install the required Python packages:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set your ngrok authentication token.**
+2. **Set your ngrok authentication token.**
    - Open the `vpn_setup.py` file and replace `"YOUR_NGROK_AUTHTOKEN"` with your ngrok authentication token.
 
-4. **Run the script.**
+3. **Run the script.**
    - Open your terminal or command prompt and run the script:
      ```bash
      python vpn_setup.py
