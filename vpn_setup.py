@@ -41,7 +41,10 @@ def get_ngrok_tunnel():
     """Starts an ngrok tunnel and returns the SSH command."""
     try:
         # Set your ngrok authtoken
-        ngrok.set_auth_token("YOUR_NGROK_AUTHTOKEN")  # Replace with your ngrok authtoken
+        ngrok_auth_token = os.environ.get("NGROK_AUTHTOKEN")
+        if not ngrok_auth_token:
+            ngrok_auth_token = getpass("Enter your ngrok authtoken: ")
+        ngrok.set_auth_token(ngrok_auth_token)
 
         # Start an SSH tunnel
         ssh_tunnel = ngrok.connect(22, "tcp")

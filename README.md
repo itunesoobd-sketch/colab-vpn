@@ -7,7 +7,7 @@ This project allows you to use a Google Colab notebook as a system-wide VPN serv
 The `vpn_setup.py` script performs the following steps:
 
 1.  **Installs required packages.** It automatically installs the required Python packages from the `requirements.txt` file.
-2.  **Starts an ngrok tunnel.** It uses the `pyngrok` library to create an SSH tunnel to the Colab notebook.
+2.  **Starts an ngrok tunnel.** It uses the `pyngrok` library to create an SSH tunnel to the Colab notebook. It will first check for the `NGROK_AUTHTOKEN` environment variable. If it is not found, it will prompt you to enter it.
 3.  **Connects to a Google Colab notebook via SSH.** It uses the `paramiko` library to establish an SSH connection to the Colab instance.
 4.  **Installs OpenVPN and Easy-RSA.** The script installs the necessary software on the Colab instance to create a VPN server.
 5.  **Configures the OpenVPN server.** It generates the server configuration files and certificates using Easy-RSA.
@@ -30,8 +30,8 @@ The `vpn_setup.py` script performs the following steps:
    cd colab-vpn
    ```
 
-2. **Set your ngrok authentication token.**
-   - Open the `vpn_setup.py` file and replace `"YOUR_NGROK_AUTHTOKEN"` with your ngrok authentication token.
+2. **Set your ngrok authentication token (optional).**
+   You can set your ngrok authentication token as an environment variable named `NGROK_AUTHTOKEN`. If you don't set it, the script will prompt you to enter it.
 
 3. **Run the script.**
    - Open your terminal or command prompt and run the script:
